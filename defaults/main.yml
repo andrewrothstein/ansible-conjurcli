@@ -1,0 +1,4 @@
+---
+# defaults file for conjurcli
+conjurcli_ver: 6.2.2
+conjurcli_user_install: no

@@ -1,0 +1,19 @@
+---
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: install conjur-cli:{{ conjurcli_ver }}
+  become: yes
+  become_user: root
+  gem:
+    name: conjur-cli
+    version: '{{ conjurcli_ver }}'
+    state: present
+    user_install: '{{ conjurcli_user_install }}'
