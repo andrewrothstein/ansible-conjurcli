@@ -1,6 +1,6 @@
-andrewrothstein.conjurcli
+nandrewrothstein.conjurcli
 =========
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-conjurcli.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-conjurcli)
+![Build Status](https://github.com/andrewrothstein/ansible-conjurcli/actions/workflows/build.yml/badge.svg)
 
 Installs CyberArk's [conjur-cli](https://github.com/cyberark/conjur-cli)
 

@@ -1,10 +1,8 @@
+---
 - archlinux_latest
 - centos_8
+- rockylinux_8.4
+- debian_bullseye
 - debian_buster
-- debian_stretch
-- gentoo_latest
-- ubi8_8.1
-- ubi8_8.2
 - ubuntu_bionic
 - ubuntu_focal
-- ubuntu_xenial
