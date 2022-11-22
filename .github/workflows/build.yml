@@ -22,7 +22,6 @@ jobs:
       matrix:
         os:
         - archlinux_latest
-        - rockylinux_8
         - rockylinux_9
         - debian_bullseye
         - ubuntu_bionic
