@@ -1,4 +1,8 @@
 ---
+- include_role:
+    name: andrewrothstein.gcc-toolbox
+- include_role:
+    name: andrewrothstein.ruby
 - name: resolve platform specific vars
   include_vars: '{{ item }}'
   with_first_found:
@@ -10,7 +14,7 @@
       paths:
         - '{{ role_path }}/vars'
 - name: install conjur-cli:{{ conjurcli_ver }}
-  become: yes
+  become: true
   become_user: root
   gem:
     name: conjur-cli
