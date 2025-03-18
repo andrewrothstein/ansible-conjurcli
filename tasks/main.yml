@@ -1,10 +1,6 @@
 ---
-- include_role:
-    name: andrewrothstein.gcc-toolbox
-- include_role:
-    name: andrewrothstein.ruby
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -13,11 +9,45 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: install conjur-cli:{{ conjurcli_ver }}
+- name: Checking for conjurcli install at {{ conjurcli_exe }}
+  become: true
+  ansible.builtin.stat:
+    path: '{{ conjurcli_exe }}'
+  changed_when: false
+  register: conjurcli_binary
+- name: Downloading and installing conjurcli
+  when: not conjurcli_binary.stat.exists
+  block:
+    - name: Downloading {{ conjurcli_url }} to {{ conjurcli_tmp_archive }}
+      become: true
+      become_user: root
+      ansible.builtin.get_url:
+        url: '{{ conjurcli_url }}'
+        dest: '{{ conjurcli_tmp_archive }}'
+        mode: '644'
+        checksum: '{{ conjurcli_checksum }}'
+    - name: Installing andrewrothstein.unarchivedeps
+      ansible.builtin.include_role:
+        name: andrewrothstein.unarchivedeps
+    - name: Unarchiving {{ conjurcli_tmp_archive }} to {{ conjurcli_parent_install_dir }}
+      become: true
+      become_user: root
+      ansible.builtin.unarchive:
+        remote_src: true
+        src: '{{ conjurcli_tmp_archive }}'
+        dest: '{{ conjurcli_parent_install_dir }}'
+        creates: '{{ conjurcli_exe }}'
+  always:
+    - name: Rm {{ conjurcli_tmp_archive }}
+      become: true
+      become_user: root
+      ansible.builtin.file:
+        path: '{{ conjurcli_tmp_archive }}'
+        state: absent
+- name: Linking {{ conjurcli_link }} to {{ conjurcli_exe }}
   become: true
   become_user: root
-  gem:
-    name: conjur-cli
-    version: '{{ conjurcli_ver }}'
-    state: present
-    user_install: '{{ conjurcli_user_install }}'
+  ansible.builtin.file:
+    src: '{{ conjurcli_exe }}'
+    dest: '{{ conjurcli_link }}'
+    state: link

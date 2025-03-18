@@ -1,0 +1,26 @@
+[
+  {
+    "OS": "archlinux",
+    "OS_VER": "latest"
+  },
+  {
+    "OS": "debian",
+    "OS_VER": "bookworm"
+  },
+  {
+    "OS": "debian",
+    "OS_VER": "bullseye"
+  },
+  {
+    "OS": "rockylinux",
+    "OS_VER": "9"
+  },
+  {
+    "OS": "ubuntu",
+    "OS_VER": "jammy"
+  },
+  {
+    "OS": "ubuntu",
+    "OS_VER": "noble"
+  }
+]

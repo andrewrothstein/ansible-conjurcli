@@ -1,9 +1,13 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.conjurcli
+  hosts: all
   roles:
-  - role: '{{ playbook_dir }}'
+    - role: '{{ playbook_dir }}'
   tasks:
-  - command: conjur -v
-    register: conjur_test_output
-  - debug:
-      msg: '{{ conjur_test_output.stdout }}'
+    - name: Executing 'conjur -v'
+      ansible.builtin.command: conjur -v
+      changed_when: false
+      register: conjurcli_test_output
+    - name: Output from 'conjur -v'
+      ansible.builtin.debug:
+        msg: '{{ conjurcli_test_output.stdout }}'

@@ -1,4 +1,29 @@
 ---
 # defaults file for conjurcli
-conjurcli_ver: 6.2.6
-conjurcli_user_install: no
+conjurcli_ver: 8.0.19
+conjurcli_parent_install_dir: /usr/local
+conjurcli_arch_map:
+  aarch64: arm64
+  arm64: arm64
+  x86_32: 386
+  x86_64: amd64
+conjurcli_mirror: https://github.com/cyberark/conjur-cli-go/releases/download
+conjurcli_checksums:
+  # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/SHA256SUMS.txt
+  '8.0.19':
+    # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/conjur-cli-go_8.0.19_darwin_amd64.tar.gz
+    darwin_amd64: sha256:b954828e9fa27b8246326f8fdc8731e4586f4b805d696071982bb209126ab041
+    # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/conjur-cli-go_8.0.19_darwin_arm64.tar.gz
+    darwin_arm64: sha256:0272002a0d088794d9537f8d0b7ad3c8c2623ccae907bb677f90eb83415058ae
+    # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/conjur-cli-go_8.0.19_linux_386.tar.gz
+    linux_386: sha256:c13fca73d81f19a93cfd500eb8915c900fe6c8a9b7cba211193161d312beabe2
+    # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/conjur-cli-go_8.0.19_linux_amd64.tar.gz
+    linux_amd64: sha256:21e3c0ea6fe68fd98c4b3ff030d4ef53a3f6ed44c481561a64b713bca72400b8
+    # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/conjur-cli-go_8.0.19_linux_arm64.tar.gz
+    linux_arm64: sha256:dedce80606e733b36f0a19ea8a45aa6f7ab48a029747d39de54dfd34dc07aec1
+    # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/conjur-cli-go_8.0.19_windows_386.zip
+    windows_386: sha256:fbb6ff8c1c2cb9d04389840a691e2a192607b8074b64b9d842b9d57e31b65995
+    # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/conjur-cli-go_8.0.19_windows_amd64.zip
+    windows_amd64: sha256:eaa7f032eccb695405edfd83f2f92a6257fca41b16bc6befa496c43ae93a63a9
+    # https://github.com/cyberark/conjur-cli-go/releases/download/v8.0.19/conjur-cli-go_8.0.19_windows_arm64.zip
+    windows_arm64: sha256:629b493c6155eccbb8bc43794f43597c6e43227316867977f3e9facad37a3068

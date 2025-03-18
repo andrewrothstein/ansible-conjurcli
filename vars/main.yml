@@ -1,2 +1,13 @@
 ---
 # vars file for conjurcli
+conjurcli_os: '{{ ansible_system | lower }}'
+conjurcli_arch: '{{ conjurcli_arch_map[ansible_architecture] }}'
+conjurcli_platform: '{{ conjurcli_os }}_{{ conjurcli_arch }}'
+conjurcli_name: conjur-cli-go_{{ conjurcli_ver }}_{{ conjurcli_platform }}
+conjurcli_archive: '{{ conjurcli_name }}.{{ conjurcli_archive_type | default("tar.gz") }}'
+conjurcli_tmp_archive: '{{ conjurcli_tmp_dir | default("/tmp") }}/{{ conjurcli_archive }}'
+conjurcli_url: '{{ conjurcli_mirror }}/v{{ conjurcli_ver }}/{{ conjurcli_archive }}'
+conjurcli_checksum: '{{ conjurcli_checksums[conjurcli_ver][conjurcli_platform] }}'
+conjurcli_install_dir: '{{ conjurcli_parent_install_dir }}/{{ conjurcli_name }}'
+conjurcli_exe: '{{ conjurcli_install_dir }}/conjur'
+conjurcli_link: '{{ conjurcli_parent_install_dir }}/bin/conjur'
